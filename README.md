@@ -1,4 +1,4 @@
-# Chat Application.
+# Chat Application Using Firebase
 
 ### This application is built using HTML, CSS, jQuery and Firebase for Web.
 
