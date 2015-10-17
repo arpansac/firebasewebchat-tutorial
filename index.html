@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Firebase Web by arpansac</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Firebase Web</h1>
+      <h2 class="project-tagline">Building a Chat Application using Firebase Web</h2>
+      <a href="https://github.com/arpansac/firebasewebchat-tutorial" class="btn">View on GitHub</a>
+      <a href="https://github.com/arpansac/firebasewebchat-tutorial/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/arpansac/firebasewebchat-tutorial/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <table>
+<thead>
+<tr>
+<th>URL</th>
+<th><a href="https://github.com/arpansac/firebasewebchat-tutorial">https://github.com/arpansac/firebasewebchat-tutorial</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technologies Used</td>
+<td>Firebase, HTML, CSS, JS/jQuery, Internet</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="this-codelab-document-will-take-you-through-the-basics-of-firebase-and-also-help-you-build-a-basic-web-application-for-chatting-online" class="anchor" href="#this-codelab-document-will-take-you-through-the-basics-of-firebase-and-also-help-you-build-a-basic-web-application-for-chatting-online" aria-hidden="true"><span class="octicon octicon-link"></span></a>This Codelab document will take you through the basics of Firebase and also help you build a basic web application for chatting online.</h3>
+
+<h2>
+<a id="index" class="anchor" href="#index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h2>
+
+<ol>
+<li>Introduction</li>
+<li>Prerequisites</li>
+<li>Sign up for Firebase</li>
+<li>Send data to Firebase</li>
+<li>Create the HTML Page</li>
+<li>Begin Connecting to Our Firebase</li>
+<li>Store an Object</li>
+<li>Working with an Array of Objects</li>
+<li>Reading/Fetching Data from Firebase</li>
+<li>Styling</li>
+<li>Make your Application available to everyone!</li>
+<li>Authenticate Users</li>
+<li>Secure (and validate) your Data</li>
+<li>What more can we do?</li>
+<li>Links to Resources</li>
+</ol>
+
+<h2>
+<a id="1-introduction" class="anchor" href="#1-introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Introduction</h2>
+
+<p>This tutorial is adapted from <a href="https://www.firebase.com/tutorial/#gettingstarted">https://www.firebase.com/tutorial/#gettingstarted</a> 
+In this lab we’re going to create our Firebase app - a chat application. We’re going to be using HTML, jQuery and CSS to create our application. Firebase also offers integration with popular frameworks such as Angular, Ember, ReactJS and Ionic. </p>
+
+<p>We can also build the same application with Objective-C or Swift for iOS or Java for Android. Complete documentation is available from <a href="www.firebase.com/docs">www.firebase.com/docs</a>.</p>
+
+<p><strong>The most important thing is that Firebase data is NoSQL. It uses JSON to store it's data. If you're yet to get familiar with what JSON is, Google it. It's pretty easy.</strong></p>
+
+<h2>
+<a id="2-requirements" class="anchor" href="#2-requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Requirements</h2>
+
+<ul>
+<li>An internet connection</li>
+<li>A Browser (Preferably Google Chrome because it gives better debugging options)</li>
+<li>Basic knowledge of HTML, CSS, JS (We'll be using jQuery though)</li>
+<li>A text editor to write the code</li>
+</ul>
+
+<h1>
+<a id="lets-get-started" class="anchor" href="#lets-get-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's Get Started</h1>
+
+<h2>
+<a id="3-sign-up-for-firebase" class="anchor" href="#3-sign-up-for-firebase" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Sign up for Firebase</h2>
+
+<p>To start we need to get a Firebase Account. You can create a Firebase account for free using your Google account. Here's the link: <a href="https://www.firebase.com/">https://www.firebase.com/</a> </p>
+
+<h3>
+<a id="once-youve-done-that-a-new-development-only-firebase-will-automatically-be-created-for-you-itll-be-named-projectidfirebaseiocom-and-youll-use-this-as-your-backenddatabase-for-this-codelab-you-can-of-course-chose-to-create-a-new-one" class="anchor" href="#once-youve-done-that-a-new-development-only-firebase-will-automatically-be-created-for-you-itll-be-named-projectidfirebaseiocom-and-youll-use-this-as-your-backenddatabase-for-this-codelab-you-can-of-course-chose-to-create-a-new-one" aria-hidden="true"><span class="octicon octicon-link"></span></a>Once you’ve done that a new development only Firebase will automatically be created for you. It’ll be named [PROJECTID].firebaseio.com and you’ll use this as your backend/database for this Codelab (you can of course chose to create a new one).</h3>
+
+<h2>
+<a id="4-send-data-to-firebase" class="anchor" href="#4-send-data-to-firebase" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Send Data to Firebase</h2>
+
+<ul>
+<li>Set up the basic HTML document (We can name it index.html)
+<br><strong>(index.html)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;!DOCTYPE html&gt;
+&lt;<span class="pl-ent">html</span>&gt;
+  &lt;<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">title</span>&gt;FireChat&lt;/<span class="pl-ent">title</span>&gt;
+    &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">body</span>&gt;
+  &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<ul>
+<li>Add the HTML DOM elements which will be used to make our chat application inside <code>&lt;body&gt;&lt;/body&gt;</code>
+<br><strong>(index.html)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>chat_container<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>results<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>form_container<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>Name<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>Message<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;
+      &lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>&gt;Post&lt;/<span class="pl-ent">button</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+   &lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<ul>
+<li>Include the Firebase library and jQuery enclosed in script tags inside <code>&lt;head&gt;&lt;/head&gt;</code>
+<br><strong>(index.html)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">title</span>&gt;FireChat&lt;/<span class="pl-ent">title</span>&gt;
+  &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>&gt;
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://cdn.firebase.com/js/client/2.2.1/firebase.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;/<span class="pl-ent">head</span>&gt;</pre></div>
+
+<h2>
+<a id="6-begin-connecting-to-our-firebase" class="anchor" href="#6-begin-connecting-to-our-firebase" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Begin Connecting to Our Firebase</h2>
+
+<ul>
+<li><p>First, we will create a reference to our Firebase application using the url of the application which should look like <strong>https://[PROJECTID].firebaseio.com/</strong></p></li>
+<li><p>Now create a new file within the same directory for including the script. I will <strong>name it as firechat_script.js</strong>, and a stylesheet named as <strong>firechat_style.css</strong> the structure of the project will now look like this</p></li>
+</ul>
+
+<pre><code>Firebase/
+  firechat/
+    index.html
+    firechat_script.js
+    firechat_style.css
+</code></pre>
+
+<ul>
+<li>Include the stylesheet file in the head and the script file by creating <code>&lt;script&gt;&lt;/script&gt;</code> and adding the location in <strong>src</strong> attribute just before <strong>body</strong> of the document ends.
+<br><strong>(index.html)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">title</span>&gt;FireChat&lt;/<span class="pl-ent">title</span>&gt;
+  &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>&gt;
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://cdn.firebase.com/js/client/2.2.1/firebase.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">'</span>https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js<span class="pl-pds">'</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+
+  // Include the stylesheet
+  &lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/css<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>firechat_style.css<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">head</span>&gt;
+&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>chat_container<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>results<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>form_container<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">input</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>username<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>Name<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>Message<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;
+      &lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span>&gt;Post&lt;/<span class="pl-ent">button</span>&gt;
+    &lt;/<span class="pl-ent">div</span>&gt;
+   &lt;/<span class="pl-ent">div</span>&gt;
+
+  // Include the script
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>firechat_script.js<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;/<span class="pl-ent">body</span>&gt;</pre></div>
+
+<ul>
+<li>Add a reference to our Firebase inside the file firechat_script.js
+<br><strong>(firechat_script.js)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myRef <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Firebase</span>(<span class="pl-s"><span class="pl-pds">'</span>https://[PROJECTID].firebaseio.com/<span class="pl-pds">'</span></span>);</pre></div>
+
+<ul>
+<li>Get the DOM elements which will be used for username and message in the script
+<br><strong>(firechat_script.js)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myRef <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Firebase</span>(<span class="pl-s"><span class="pl-pds">'</span>https://[PROJECTID].firebaseio.com/<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">var</span> username_input <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#username<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> message_input <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#text<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> send_button <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#post<span class="pl-pds">'</span></span>);</pre></div>
+
+<ul>
+<li><p><strong>.set()</strong> is a method which is used to send the data to our Firebase database. Each time it is called, it <strong>overwrites</strong> the previous existing value. </p></li>
+<li><p>Add the following lines to firechat_script.js
+<br><strong>(firechat_script.js)</strong></p></li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>send_button.<span class="pl-c1">click</span>(<span class="pl-k">function</span>() {
+  <span class="pl-k">var</span> username <span class="pl-k">=</span> username_input.val();
+  <span class="pl-k">var</span> message <span class="pl-k">=</span> message_input.val();
+
+  <span class="pl-c">//send the message</span>
+  myRef.set(username <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span> says: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> message);
+
+  <span class="pl-c">//empty the message input after sending the message</span>
+  message_input.val(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>);
+}</pre></div>
+
+<p>Enter your name inside username input and a test message in the message input and click the post button. 
+Go to your the link you have mentioned in your Firebase reference <strong>('https://[PROJECTID].firebaseio.com/')</strong> and you should see the change in your Firebase database.</p>
+
+<p>But this <strong>.set()</strong> would result in clearing the database every time and writing the new lines in it.</p>
+
+<p>You can try by clicking the post button again and again by changing the values of message and/or username. It'll always replace the previous values</p>
+
+<h1>
+<a id="7-store-an-object" class="anchor" href="#7-store-an-object" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Store an Object</h1>
+
+<p>Till now we have stored the string version of our message. As I mentioned it before, Firebase uses JSON to store our data into database, let's modify our last piece of code in firechat_script.js.</p>
+
+<ul>
+<li>We will now send JSON data and also, instead of using <strong>.set()</strong>, we will use <strong>.push()</strong>.
+<br><strong>(firechat_script.js)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>send_button.<span class="pl-c1">click</span>(<span class="pl-k">function</span>() {
+  <span class="pl-k">var</span> username <span class="pl-k">=</span> username_input.val();
+  <span class="pl-k">var</span> message <span class="pl-k">=</span> message_input.val();
+
+  <span class="pl-c">//send the message</span>
+  <span class="pl-c">//This time we are pushing a JSON object with keys as **user** and **text**</span>
+  myRef.<span class="pl-c1">push</span>({
+    user<span class="pl-k">:</span> username,
+    text<span class="pl-k">:</span> message,
+  )};
+
+  <span class="pl-c">//empty the message input after sending the message</span>
+  message_input.val(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>);
+}</pre></div>
+
+<ul>
+<li>We could have used <strong>.set()</strong> again, but what <strong>.push()</strong> does is explained in the next section.</li>
+<li>Click the post button and see the changes yourself in your Firebase. The data is now in JSON format.</li>
+</ul>
+
+<h1>
+<a id="8-working-with-an-array-of-objects" class="anchor" href="#8-working-with-an-array-of-objects" aria-hidden="true"><span class="octicon octicon-link"></span></a>8. Working with an Array of Objects</h1>
+
+<p>(From now on I'll refer to Firebase only whenever I want to say Firebase database)</p>
+
+<ul>
+<li>
+<strong>Now click the post button again. Now you will see that there's a new entry in your Firebase.</strong> </li>
+<li>This shows what push does. It keeps adding to the list each time we send data object to Firebase</li>
+</ul>
+
+<h1>
+<a id="9-getting-data-back-from-firebase" class="anchor" href="#9-getting-data-back-from-firebase" aria-hidden="true"><span class="octicon octicon-link"></span></a>9. Getting Data Back from Firebase</h1>
+
+<p>Till now we've been sending data to our Firebase. But, for our chat application, we also need to display the messages which we or the other users are sending.</p>
+
+<ul>
+<li>Now we'll use event <strong>child_added</strong> which is triggered each time data is added to our Firebase.</li>
+<li><p>The received data is stored in <strong>snapshot</strong>. We will display the data/messages in the div with id <strong>results</strong></p></li>
+<li><p>Our firechat_script.js will now look like this:
+<br><strong>(firechat_script.js)</strong></p></li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> myRef <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Firebase</span>(<span class="pl-s"><span class="pl-pds">'</span>https://[PROJECTID].firebaseio.com/<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">var</span> username_input <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#username<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> message_input <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#text<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> send_button <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#post<span class="pl-pds">'</span></span>);
+
+send_button.<span class="pl-c1">click</span>(<span class="pl-k">function</span>() {
+  <span class="pl-k">var</span> username <span class="pl-k">=</span> username_input.val();
+  <span class="pl-k">var</span> message <span class="pl-k">=</span> message_input.val();
+
+  <span class="pl-c">//send the message</span>
+  <span class="pl-c">//This time we are pushing a JSON object with keys as **user** and **text**</span>
+  myRef.<span class="pl-c1">push</span>({
+    user<span class="pl-k">:</span> username,
+    text<span class="pl-k">:</span> message,
+  )};
+
+  <span class="pl-c">//empty the message input after sending the message</span>
+  message_input.val(<span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>);
+}
+
+<span class="pl-c">// 'child_added' event is called whenever a new child is added in Firebase</span>
+<span class="pl-c">// snapshot is the newly added data</span>
+myRef.on(<span class="pl-s"><span class="pl-pds">'</span>child_added<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">snapshot</span>) {
+    msg <span class="pl-k">=</span> snapshot.val();
+    <span class="pl-k">var</span> new_message <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>&lt;div/&gt;<span class="pl-pds">'</span></span>);
+    new_message.append(<span class="pl-s"><span class="pl-pds">'</span>&lt;p&gt;&lt;strong&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg.user <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg.<span class="pl-c1">text</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/p&gt;<span class="pl-pds">'</span></span>);
+    <span class="pl-c">//add a class for styling purposes    </span>
+    new_message.addClass(<span class="pl-s"><span class="pl-pds">'</span>msg<span class="pl-pds">'</span></span>);
+
+    <span class="pl-c">// to differentiate between your messages and someone else's messages, we'll add a class 'me'</span>
+    <span class="pl-c">// to your messages and style them accordingly</span>
+    new_message.addClass(msg.user <span class="pl-k">==</span> username_input.val() <span class="pl-k">?</span> <span class="pl-s"><span class="pl-pds">'</span> me<span class="pl-pds">'</span></span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)   <span class="pl-c">// this is an inline version of if-else    </span>
+
+    $(<span class="pl-s"><span class="pl-pds">"</span>#results<span class="pl-pds">"</span></span>).append(new_message_box);
+});</pre></div>
+
+<ul>
+<li>Refresh your page, now you'll see all your previous messages below your post buttons along with the username which you used.</li>
+</ul>
+
+<h1>
+<a id="10-styling" class="anchor" href="#10-styling" aria-hidden="true"><span class="octicon octicon-link"></span></a>10. Styling</h1>
+
+<h4>
+<a id="lets-begin-adding-some-styling-css-to-our-application-inside-the-stylesheet-which-we-created-earlier-firechat_stylecss-as-it-needs-to-look-like-a-chat-application" class="anchor" href="#lets-begin-adding-some-styling-css-to-our-application-inside-the-stylesheet-which-we-created-earlier-firechat_stylecss-as-it-needs-to-look-like-a-chat-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's begin adding some styling (css) to our application inside the stylesheet which we created earlier (<strong>firechat_style.css</strong>) as it needs to look like a chat application.</h4>
+
+<div class="highlight highlight-source-css"><pre><span class="pl-e">.msg</span>{
+    <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">1<span class="pl-k">rem</span></span> <span class="pl-c1">0</span>;
+    <span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">.5<span class="pl-k">rem</span></span>;
+    <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">90<span class="pl-k">%</span></span>;
+    <span class="pl-c1"><span class="pl-c1">background-color</span></span>: <span class="pl-c1">#efefef</span>;
+    <span class="pl-c1"><span class="pl-c1">word-wrap</span></span>: <span class="pl-c1">break-word</span>;  <span class="pl-c">/* This is used so that if the message is too long then it goes to the next line*/</span>
+    <span class="pl-c1"><span class="pl-c1">text-align</span></span>: <span class="pl-c1">left</span>;
+}
+
+<span class="pl-c">/* 'me' class will change the background color and the text-alignment of your messages, </span>
+<span class="pl-c">thus differentiating them from the messages sent by other users */</span>
+<span class="pl-e">.me</span>{
+    <span class="pl-c1"><span class="pl-c1">background-color</span></span>: <span class="pl-c1">#cdcdcd</span>;
+    <span class="pl-c1"><span class="pl-c1">text-align</span></span>: <span class="pl-c1">right</span>;
+}</pre></div>
+
+<h4>
+<a id="keeping-the-current-tabbrowser-window-open-launch-another-tabbrowser-window-and-open-indexhtml-here-also-post-a-message-with-another-username-and-youll-see" class="anchor" href="#keeping-the-current-tabbrowser-window-open-launch-another-tabbrowser-window-and-open-indexhtml-here-also-post-a-message-with-another-username-and-youll-see" aria-hidden="true"><span class="octicon octicon-link"></span></a>Keeping the current Tab/Browser Window open, launch another Tab/Browser window and open index.html here also. Post a message with another username and you'll see:</h4>
+
+<ol>
+<li>Both the Tabs/Browser windows have been updated with new message</li>
+<li>Messages sent from your new Tab with the new username have a different alignment and background color. 
+(See, it was so Easy!)</li>
+</ol>
+
+<h1>
+<a id="11-make-your-application-available-to-everyone" class="anchor" href="#11-make-your-application-available-to-everyone" aria-hidden="true"><span class="octicon octicon-link"></span></a>11. Make your Application available to everyone!</h1>
+
+<h4>
+<a id="to-begin-with-this-we-would-need-nodejs-you-can-install-it-directly-by-downloading-the-package-from-their-website-or-using-the-terminal-google-it" class="anchor" href="#to-begin-with-this-we-would-need-nodejs-you-can-install-it-directly-by-downloading-the-package-from-their-website-or-using-the-terminal-google-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>To begin with this we would need Node.js, you can install it directly by downloading the package from their website or using the terminal (Google it!)</h4>
+
+<ul>
+<li>Run the following command in your Terminal to set up the Firebase CLI (Command Line Interface)</li>
+</ul>
+
+<pre><code>npm install -g firebase-tools
+</code></pre>
+
+<ul>
+<li>Now to login to Firebase using Terminal, run the following command in the Terminal</li>
+</ul>
+
+<pre><code>firebase login
+</code></pre>
+
+<ul>
+<li><p>Set the directory one step outside your project directory. For example, in the directory structure shown above the path should be at <strong>Firebase/</strong></p></li>
+<li><p>Once successful it's time to initialize Firebase</p></li>
+</ul>
+
+<pre><code>firebase init
+</code></pre>
+
+<p>*<em>It will ask you to choose the application which you want to use for this initialization (choose with arrow keys), select your current chat application. *</em></p>
+
+<p>** Then select the name of the application folder <strong>firechat</strong> here</p>
+
+<ul>
+<li>It's time to deploy the application</li>
+</ul>
+
+<pre><code>firebase deploy
+</code></pre>
+
+<h4>
+<a id="this-will-give-you-a-url-or-you-can-open-directly-using-firebase-open-command-in-your-terminal-which-will-open-a-new-browser-window-or-a-tab" class="anchor" href="#this-will-give-you-a-url-or-you-can-open-directly-using-firebase-open-command-in-your-terminal-which-will-open-a-new-browser-window-or-a-tab" aria-hidden="true"><span class="octicon octicon-link"></span></a>This will give you a url or you can open directly using <strong>firebase open</strong> command in your terminal which will open a new Browser window or a Tab.</h4>
+
+<h3>
+<a id="send-this-link-to-your-friends-and-start-chatting" class="anchor" href="#send-this-link-to-your-friends-and-start-chatting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send this link to your friends and start chatting!</h3>
+
+<h1>
+<a id="12-authenticate-users" class="anchor" href="#12-authenticate-users" aria-hidden="true"><span class="octicon octicon-link"></span></a>12. Authenticate Users</h1>
+
+<h4>
+<a id="hey-but-as-we-can-see-our-chat-is-not-yet-private-anyone-can-join-the-chat-as-of-now-lets-add-authenticationlogin-to-our-application" class="anchor" href="#hey-but-as-we-can-see-our-chat-is-not-yet-private-anyone-can-join-the-chat-as-of-now-lets-add-authenticationlogin-to-our-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hey, but as we can see, our chat is not yet private. Anyone can join the chat as of now. Let's add Authentication/Login to our application.</h4>
+
+<h4>
+<a id="ill-show-you-how-to-add-google-login-authentication-to-our-application" class="anchor" href="#ill-show-you-how-to-add-google-login-authentication-to-our-application" aria-hidden="true"><span class="octicon octicon-link"></span></a>I'll show you how to add Google login authentication to our application</h4>
+
+<ul>
+<li>First, let's create a new Google application at <strong><a href="https://console.developers.google.com/">https://console.developers.google.com/</a></strong>
+</li>
+<li>Select <strong>Create a project...</strong> from the dropdown at the top of the page which opens up from the above link.</li>
+<li>Add your project's name and click the Create button.</li>
+<li>On the left hand side, a menu will be displayed. Navigate to <strong>APIs &amp; auth → Credentials</strong> in it.</li>
+<li>In the popup that is displayed, select <strong>OAuth 2.0 client ID</strong>
+</li>
+<li>Configure the <strong>Consent name</strong>, just enter the name for now, you can leave the Home Page and other options blank in that, these can be filled later.</li>
+<li>Set <strong>Authorized JavaScript origins</strong> to <strong><a href="https://auth.firebase.com">https://auth.firebase.com</a></strong>
+</li>
+<li>Set <strong>Authorized redirect URIs</strong> to <strong><a href="https://auth.firebase.com/v2/">https://auth.firebase.com/v2/</a>/auth/google/callback</strong> (remember to replace  with your app name.</li>
+<li>This will give you a <strong>client ID</strong> and <strong>client secret</strong>. These will be needed.</li>
+<li>Now go to your Firebase app dashboard and go to <strong>Login &amp; Auth</strong> section. Select the Google tab.</li>
+<li><p>Check enable Google Authentication and fill the client ID and client secret from the previous step here.</p></li>
+<li><p>Once done with this, you need to <strong>enable Google authentication in your Firebase</strong>. Go to the link you mentioned in your reference</p></li>
+</ul>
+
+<h3>
+<a id="lets-now-start-modifying-our-code-to-add-google-authentication-to-our-app" class="anchor" href="#lets-now-start-modifying-our-code-to-add-google-authentication-to-our-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Let's now start modifying our code to add Google Authentication to our app</h3>
+
+<ul>
+<li>Finally, replace the username input with a button which will trigger Google login and also disable the post button so that only a logged in user is able to use the application.</li>
+</ul>
+
+<p>The <strong>form_container</strong> div should now look like this.
+<br><strong>(index.html)</strong></p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>form_container<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>login<span class="pl-pds">"</span></span>&gt;Twitter Login&lt;/<span class="pl-ent">button</span>&gt;
+  &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text<span class="pl-pds">"</span></span> <span class="pl-e">placeholder</span>=<span class="pl-s"><span class="pl-pds">"</span>Message<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;
+  &lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>post<span class="pl-pds">"</span></span> <span class="pl-e">disabled</span>=<span class="pl-s"><span class="pl-pds">"</span>true<span class="pl-pds">"</span></span>&gt;Post&lt;/<span class="pl-ent">button</span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<ul>
+<li>Moving to the script file, we will set the username as null and assign the login button to a variable.
+<br><strong>(firechat_script.js)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> username <span class="pl-k">=</span> <span class="pl-c1">null</span>;
+<span class="pl-k">var</span> google_login <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#google_login<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> message_input <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#text<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> send_button <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#post<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> results <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>#results<span class="pl-pds">'</span></span>);</pre></div>
+
+<ul>
+<li>Remember that the username variable will exist for only one session, that is, each time the page is refreshed, a login will be required.</li>
+</ul>
+
+<h4>
+<a id="we-will-use-authwithoauthpopup-to-trigger-the-authentication-add-the-following-above-your-send_buttonclick-statements" class="anchor" href="#we-will-use-authwithoauthpopup-to-trigger-the-authentication-add-the-following-above-your-send_buttonclick-statements" aria-hidden="true"><span class="octicon octicon-link"></span></a>We will use <strong>authWithOAuthPopup</strong> to trigger the authentication. Add the following above your <strong>send_button.click()</strong> statements.</h4>
+
+<p><br><strong>(firechat_script.js)</strong></p>
+
+<div class="highlight highlight-source-js"><pre>google_login_button.<span class="pl-c1">click</span>(<span class="pl-k">function</span>() {
+  <span class="pl-c">// A login popup will be displayed when the google login button is clicked</span>
+  myRef.authWithOAuthPopup(<span class="pl-s"><span class="pl-pds">"</span>google<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">error</span>, <span class="pl-smi">authData</span>) {
+    <span class="pl-k">if</span>(error){
+      <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>login failed<span class="pl-pds">'</span></span>);
+    }<span class="pl-k">else</span>{
+      username <span class="pl-k">=</span>  authData.google.username;
+      <span class="pl-c">//add the username to the post button</span>
+      send_button.html(<span class="pl-s"><span class="pl-pds">"</span>Post as <span class="pl-pds">"</span></span> <span class="pl-k">+</span> user);
+
+      <span class="pl-c">// enable the post message button</span>
+      send_button.attr(<span class="pl-s"><span class="pl-pds">'</span>disabled<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>);
+      google_login_button.attr(<span class="pl-s"><span class="pl-pds">'</span>disabled<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>true<span class="pl-pds">'</span></span>);
+    }
+  }, {remember<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>none<span class="pl-pds">"</span></span>}  <span class="pl-c">// this will end authentication when the page is closed</span>
+  );
+});</pre></div>
+
+<ul>
+<li>Finally we will also want that the previous messages log must be displayed only when the user is logged in. Wrap the <strong>myRef.on('child_added') with myRef.onAuth</strong>.
+<br><strong>(firechat_script.js)</strong>
+</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre>myRef.onAuth(<span class="pl-k">function</span>(<span class="pl-smi">authData</span>) {
+  <span class="pl-k">if</span> (authData) { 
+    <span class="pl-c">// user has authenticated</span>
+    myRef.on(<span class="pl-s"><span class="pl-pds">'</span>child_added<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">snapshot</span>) {
+      msg <span class="pl-k">=</span> snapshot.val();
+
+      <span class="pl-c">// create a new div and append the user and text from the snapshot to it</span>
+      <span class="pl-k">var</span> new_message <span class="pl-k">=</span> $(<span class="pl-s"><span class="pl-pds">'</span>&lt;div/&gt;<span class="pl-pds">'</span></span>);
+      new_message.append(<span class="pl-s"><span class="pl-pds">'</span>&lt;p&gt;&lt;strong&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg.user <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> msg.<span class="pl-c1">text</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/p&gt;<span class="pl-pds">'</span></span>);
+      <span class="pl-c">// add a class for styling purposes</span>
+      new_message.addClass(<span class="pl-s"><span class="pl-pds">'</span>msg<span class="pl-pds">'</span></span>);
+
+      <span class="pl-c">// to differentiate between your messages and someone else's messages, we'll add a class 'me'</span>
+      <span class="pl-c">// to your messages and style them accordingly</span>
+      <span class="pl-c">// new_message.addClass(msg.user == username_input.val() ? ' me' : '')</span>
+      $(<span class="pl-s"><span class="pl-pds">"</span>#results<span class="pl-pds">"</span></span>).append(new_message);
+      $(<span class="pl-s"><span class="pl-pds">"</span>#results<span class="pl-pds">"</span></span>).animate({scrollTop<span class="pl-k">:</span> $(<span class="pl-s"><span class="pl-pds">'</span>#results<span class="pl-pds">'</span></span>)[<span class="pl-c1">0</span>].scrollHeight});
+   });
+ }
+}</pre></div>
+
+<h3>
+<a id="deploy-the-new-code-with-firebase-deploy-in-the-terminal" class="anchor" href="#deploy-the-new-code-with-firebase-deploy-in-the-terminal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deploy the new code with <strong>firebase deploy</strong> in the Terminal</h3>
+
+<h3>
+<a id="refresh-the-page-where-your-application-was-opened-and-now-login-to-viewpost-previous-messages" class="anchor" href="#refresh-the-page-where-your-application-was-opened-and-now-login-to-viewpost-previous-messages" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Refresh</strong> the page where your application was opened. And now login to view/post previous messages</h3>
+
+<h1>
+<a id="13-secure-and-validate-your-data" class="anchor" href="#13-secure-and-validate-your-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>13. Secure (and validate) your Data</h1>
+
+<ul>
+<li>One security risk that your database faces right now is that anyone who has the access to our Firebase link, can create a reference to it in their application and access our data. Well, Firebase has a solution to this as well!</li>
+</ul>
+
+<h3>
+<a id="firebase-has-a-set-of-security--rules-which-can-be-used-to-put-restrictions-on-the-data" class="anchor" href="#firebase-has-a-set-of-security--rules-which-can-be-used-to-put-restrictions-on-the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Firebase has a set of Security &amp; Rules which can be used to put restrictions on the data.</h3>
+
+<ul>
+<li>Let's go to our Firebase dashboard and select <strong>Security &amp; Rules</strong> from the left-hand-side menu
+#### We'll now add change the security rules, so that only authorised users can access our data/chat content.</li>
+</ul>
+
+<pre><code>{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+</code></pre>
+
+<p>*These are just read an write rules. We can also add validation rules to add content limitations to our chat. For example let's limit the length of our chat messages:</p>
+
+<pre><code>"$messageID": {
+  "text" : {
+    ".validate": "newData.isString() &amp;&amp; newData.val().length &lt; 140"
+  }
+}
+</code></pre>
+
+<p><strong>$messageID</strong> is a reference to unique message ids.</p>
+
+<p>Of course, we could have added the same limitation to our html also, but that's something which can be easily bypassed from the front end.</p>
+
+<h3>
+<a id="there-are-a-host-of-other-validation-rules-which-are-documented-at-httpswwwfirebasecomdocssecurityguidesecuring-datahtml" class="anchor" href="#there-are-a-host-of-other-validation-rules-which-are-documented-at-httpswwwfirebasecomdocssecurityguidesecuring-datahtml" aria-hidden="true"><span class="octicon octicon-link"></span></a>There are a host of other validation rules which are documented at <a href="https://www.firebase.com/docs/security/guide/securing-data.html">https://www.firebase.com/docs/security/guide/securing-data.html</a>
+</h3>
+
+<h1>
+<a id="14-what-more-can-we-do" class="anchor" href="#14-what-more-can-we-do" aria-hidden="true"><span class="octicon octicon-link"></span></a>14. What more can we do?</h1>
+
+<p>For making this app more user friendly, you can add a logout button in it and keep it logged in even if the page is refreshed or the window is closed. Additionally, you can make it responsive for different screen sizes.</p>
+
+<p>To make it even better, you can develop an Android/iOS app for the same and deploy that too!</p>
+
+<h1>
+<a id="15-links-to-resources" class="anchor" href="#15-links-to-resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>15. Links to Resources</h1>
+
+<h4>
+<a id="to-keep-learning-about-this-awesome-technology-here-are-some-links-which-will-be-helpful" class="anchor" href="#to-keep-learning-about-this-awesome-technology-here-are-some-links-which-will-be-helpful" aria-hidden="true"><span class="octicon octicon-link"></span></a>To keep learning about this awesome technology, here are some links which will be helpful</h4>
+
+<ul>
+<li>Firebase Documentation: <a href="https://www.firebase.com/docs">https://www.firebase.com/docs</a>
+</li>
+<li>Fully functional chat application built with Twitter auth, bootstrap and jQuery: <a href="https://github.com/jwngr/gdg-summit/tree/master/chat">https://github.com/jwngr/gdg-summit/tree/master/chat</a>
+</li>
+<li>Firebase Presentation slides: <a href="https://github.com/jwngr/gdg-summit">https://github.com/jwngr/gdg-summit</a>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/arpansac/firebasewebchat-tutorial">Firebase Web</a> is maintained by <a href="https://github.com/arpansac">arpansac</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
