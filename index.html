@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  	<!--Include Firebase in your webpage using the following script -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <!-- Include jquery -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+    <meta charset="UTF-8">
+    <title>Let's Chat</title>
+
+    <!-- This is the stylesheet where we will include the css -->
+    <link rel="stylesheet" type="text/css" href="firechat_style.css">
+
+  </head>
+
+
+  <body>
+
+    <div id="chat_container">
+      <!-- This will contain the chat history -->
+      <div id="results"></div>
+
+      <!-- This will be used to enter the username and chat -->
+      <div id="form_container">
+        <button id="google_login">Google Login</button>
+        <textarea id="text" type="text" placeholder="Message"></textarea>
+        <button id="post" disabled="true">Post</button>
+      </div>
+
+    </div>
+    
+
+    
+  	<!--Create and include the script file for this page -->
+  	<script type="text/javascript" src="firechat_script.js"></script>
+  </body>
+</html>

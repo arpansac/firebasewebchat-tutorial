@@ -1,0 +1,64 @@
+
+.msg{
+	margin: 1rem 0;
+	padding: .5rem;
+	width: 90%;
+	background-color: #efefef;
+	word-wrap: break-word;  /* This is used so that if the message is too long then it goes to the next line*/
+	text-align: left;
+}
+
+
+/* 'me' class will change the background color and the text-alignment of your messages, 
+thus differentiating them from the messages sent by other users */
+.me{
+	background-color: #cdcdcd;
+	text-align: right;
+}
+
+
+/* Make the application better with the following style */
+#chat_container{
+	width: 75%;
+	margin: 0 auto;
+	min-width: 20rem;
+	height: 30rem;
+	min-height: 300px;
+}
+
+#results{
+	width: 45%;
+	margin: 0 auto;
+	height: 75%;
+	overflow-y: auto;
+}
+
+#form_container{
+	width: 55%;
+	margin: 0 auto;
+}
+
+#username{
+	display: block;
+    width: 95%;
+    margin: 0 auto;
+   	border: 1px solid lightgrey;
+    padding: .5rem;
+}
+
+#text{
+	display: block;
+    width: 95%;
+    margin: 0 auto;
+    border: 1px solid lightgrey;
+    padding: .5rem;
+    margin-top: .5rem;
+    height: 3rem;
+}
+
+#post{
+	display: block;
+	margin: 0 auto;
+	padding: .3rem;
+	font-size: 1rem;
+}
