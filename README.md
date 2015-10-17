@@ -2,4 +2,6 @@
 
 ### This application is built using HTML, CSS, jQuery and Firebase for Web.
 
-#### A tutorial for the same can be found at: http://arpansac.github.io/firebasewebchat-tutorial/
+#### Try it here: https://intense-inferno-1504.firebaseapp.com/
+
+##### A tutorial for the same can be found at: http://arpansac.github.io/firebasewebchat-tutorial/
