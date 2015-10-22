@@ -472,7 +472,7 @@ myRef.on(<span class="pl-s"><span class="pl-pds">'</span>child_added<span class=
     }<span class="pl-k">else</span>{
       username <span class="pl-k">=</span>  authData.google.username;
       <span class="pl-c">//add the username to the post button</span>
-      send_button.html(<span class="pl-s"><span class="pl-pds">"</span>Post as <span class="pl-pds">"</span></span> <span class="pl-k">+</span> user);
+      send_button.html(<span class="pl-s"><span class="pl-pds">"</span>Post as <span class="pl-pds">"</span></span> <span class="pl-k">+</span> username);
 
       <span class="pl-c">// enable the post message button</span>
       send_button.attr(<span class="pl-s"><span class="pl-pds">'</span>disabled<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>false<span class="pl-pds">'</span></span>);
@@ -633,6 +633,16 @@ myRef.on(<span class="pl-s"><span class="pl-pds">'</span>child_added<span class=
 
     </section>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-69174626-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
